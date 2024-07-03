@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+  web:
+    resources:
+      static-locations: classpath:/static/,file:/upload/
+  mvc:
+    static-path-pattern: /res/**
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oj?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  data:
+    mongodb:
+      database: admin
+      host: localhost
+      port: 27017
+      username: xenkernar
+      password: xenkernar
+    redis:
+      database: 0
+      host: localhost
+      port: 6379
+      timeout: 10000
+
+minio:
+  endpoint: localhost
+  port: 9000
+  accessKey: xenkernar
+  secretKey: xenkernar
+  secure: false
+  bucketName: labreports
+  expiry: 7
+
+adjudicator:
+  languages:
+    support: ["C", "JAVA"]
+    src-file-suffix:
+      {
+        "C": ["c", "h"],
+        "JAVA": ["java"]
+      }
+    docker-images:
+      {
+        "C": "xenkernar/c-runner:1.0",
+        "JAVA": "xenkernar/java-runner:1.0"
+      }
+  compile:
+    src-path: "C:/Users/Xenkernar/Desktop/tempCompile"
+  limit:
+    run-milliseconds: 1000
+    double-error: 1e-6
+    run-megabytes: 256
+  require-strict-equality: false
+  run-separator: "9C1BF212D8B112395B4686349953273C"
